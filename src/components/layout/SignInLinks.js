@@ -7,9 +7,6 @@ const SignedInLinks = () => {
       <li>
         <NavLink to="/createproject">New Project</NavLink>
       </li>
-      <li>
-        <NavLink to="/">About Us</NavLink>
-      </li>
 
       <li>
         <NavLink to="/">Logout</NavLink>

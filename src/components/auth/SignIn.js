@@ -34,7 +34,9 @@ class SignIn extends Component {
             <label htmlFor="password">Password</label>
             <input type="password" id="password" onChange={this.handleChange} />
           </div>
-          <button className="btn green ">Login</button>
+          <div className="input-field">
+            <button className="btn pink green">Login</button>
+          </div>
         </form>
       </div>
     );
