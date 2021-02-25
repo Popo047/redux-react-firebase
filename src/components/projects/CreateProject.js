@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createProject } from "../../store/Actions/projectActions";
+import Modal from "../modal/Modal";
 
 class CreateProject extends Component {
   constructor(props) {
@@ -42,7 +43,7 @@ class CreateProject extends Component {
               onChange={this.handleChange}
             />
           </div>
-          <button className="btn green ">Create</button>
+          <button className="btn green btn modal-trigger ">Create</button>
         </form>
       </div>
     );

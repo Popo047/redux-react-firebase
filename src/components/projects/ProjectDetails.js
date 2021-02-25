@@ -1,30 +1,54 @@
 import React from "react";
+import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
 
 function ProjectDetails(props) {
-  const id = props.match.params.id; //verified via inspect in GC
-  return (
-    <div className="container section project-details">
-      <div className="card ">
-        <div className="card-content">
-          <span className="card-title">Project Title - {id}</span>
-          <p>
-            {" "}
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </div>
-        <div className="card-action">
-          <div>Posted by Popo</div>
-          <div>22 Feb</div>
+  // const id = props.match.params.id; //verified via inspect in GC
+  // console.log(props);// to view the available params
+
+  const { project } = props;
+
+  if (project) {
+    return (
+      <div className="container section project-details">
+        <div className="card ">
+          <div className="card-content">
+            <span className="card-title">
+              {project.title} - {project.id}
+            </span>
+            <p>{project.content}</p>
+          </div>
+          <div className="card-action">
+            <div>
+              Posted by {project.authorFirstName} {project.authorLastName}
+            </div>
+            <div>22 Feb</div>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className="container center">
+        {/* to check if project exists,  */}
+        <p> Loading Project</p>
+      </div>
+    );
+  }
 }
 
-export default ProjectDetails;
+const mapStateToProps = (state, myProps) => {
+  console.log(state); // to find the exact obj
+  const id = myProps.match.params.id;
+  const projects = state.firestore.data.projects;
+  const project = projects ? projects[id] : null; //to check if there are any projects in collection
+  return {
+    project: project,
+  };
+};
+
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([{ collection: "projects" }])
+)(ProjectDetails);

@@ -4,6 +4,7 @@ import DashboardLink from "./DashboardLink";
 // import Dashboard from "../dashboard/Dashboard";
 import SignedInLinks from "./SignInLinks";
 import SignedOutLinks from "./SignOutLinks";
+import { connect } from "react-redux";
 
 const Navbar = () => {
   return (
@@ -20,7 +21,12 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+const mapStateToProps = (state) => {
+  console.log(state); // to know the state
+  return {};
+};
+
+export default connect(mapStateToProps)(Navbar);
 
 // export class Navbar extends Component {
 //   handleChange = () => {};
