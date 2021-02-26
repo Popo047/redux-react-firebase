@@ -8,7 +8,9 @@ const rootReducer = combineReducers({
   auth: authReducer,
   project: projectReducer,
   firestore: firestoreReducer, //sync firestore into state obj in database
-  fireBase: firebaseReducer, //sync auth status on firebase with respect to redux
+  firebase: firebaseReducer, //sync auth status on firebase with respect to redux
+
+  //NOTE: fireBase prop changed to firebase   [B -> b] , refer for any errors here
 });
 
 export default rootReducer;

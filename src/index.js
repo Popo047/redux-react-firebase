@@ -30,18 +30,33 @@ const store = createStore(
     applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
     reduxFirestore(fbConfig),
     // reduxFirestore(fbConfig),
-    reactReduxFirebase(fbConfig)
+    reactReduxFirebase(fbConfig, {
+      useFirestoreForProfile: true,
+      userProfile: "users",
+      attachAuthIsReady: true,
+    })
   )
 );
 
-ReactDOM.render(
-  // <ReactReduxFirebaseProvider>
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  // </ReactReduxFirebaseProvider>,
-  document.getElementById("root")
-);
+store.firebaseAuthIsReady.then(() => {
+  ReactDOM.render(
+    // <ReactReduxFirebaseProvider>
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    // </ReactReduxFirebaseProvider>,
+    document.getElementById("root")
+  );
+}); //Rendering it inside to sync the login and logout pages while refreshing browser
+
+// ReactDOM.render(
+//   // <ReactReduxFirebaseProvider>
+//   <Provider store={store}>
+//     <App />
+//   </Provider>,
+//   // </ReactReduxFirebaseProvider>,
+//   document.getElementById("root")
+// );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

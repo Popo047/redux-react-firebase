@@ -19,7 +19,7 @@ const SignedInLinks = (props) => {
           to="/"
           className="btn-floating btn-large waves-effect waves-light green"
         >
-          PO
+          {props.profile.initials}
         </NavLink>
       </li>
     </ul>
