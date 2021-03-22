@@ -1,7 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Routes from "./components/Pages/Routes";
-// import Modal from "./components/modal/Modal";
 
 function App() {
   return (
